@@ -37,3 +37,10 @@ vendorに入れて、controlerから呼び出します。
         $events = $timelineMaker->getEvents(1, 'Event.id desc', 10, false);
         $recommends = $timelineMaker->getEvents(1, 'Event.participant desc',3 ,false);
 ```
+
+
+その他
+--------------------
+
+もともとアプリケーションの一部を取り出しただけなので、単独で動くかは確認してません。
+cakephpに触れてから１ヶ月ぐらいの時に書いたのでいろいろと効率悪い書き方かもしれません。

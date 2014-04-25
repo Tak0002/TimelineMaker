@@ -2,22 +2,8 @@
 
 class EventListMaker extends AppController
 {
-    public $helpers = array(
-        'Session',
-        'Html' => array('className' => 'TwitterBootstrap.BootstrapHtml'),
-        'Form' => array('className' => 'TwitterBootstrap.BootstrapForm'),
-        'Paginator' => array('className' => 'TwitterBootstrap.BootstrapPaginator'),
-        'Event'
-    );
     public $uses = array('Event','EventsTag', 'UsersTag'); //使うテーブル
-    public $components = array('Session',
-        'Auth' => array(
-            'loginAction' => array(
-                'controller' => 'Twitter',
-                'action' => 'connect',
-            )
-        )
-    );
+
     
     /**
      * タグからイベントのID一覧を返します。
@@ -83,12 +69,6 @@ class EventListMaker extends AppController
                     )
             );
         }
-        if(isset($events[0]['Event']['body'])){
-            foreach ($events as $key => $event) {
-                $value = strip_tags($event['Event']['body']);
-                $events[$key]['Event']['body'] = mb_strimwidth($value, 0, 200, "", "UTF-8");
-            }
-        }
         return $events;
     }
 }
@@ -118,7 +98,7 @@ class TimelineMaker extends EventListMaker {
     private function getFollowTagIdList() {
         $user = $this->user;
         if (!$user) {
-            throw new Exception('なんでログインしてないのにここまでこれたの？');
+            throw new Exception('ログインしていません。');
         }
         $tagsId = $this->UsersTag->find(
                 'all', array(
