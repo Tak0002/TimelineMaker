@@ -33,9 +33,9 @@ vendorに入れて、controlerから呼び出します。
 例：
 
 ```php
-        $timelineMaker = new TimelineMaker($this->Auth->user());
-        $events = $timelineMaker->getEvents(1, 'Event.id desc', 10, false);
-        $recommends = $timelineMaker->getEvents(1, 'Event.participant desc',3 ,false);
+$timelineMaker = new TimelineMaker($this->Auth->user());
+$events = $timelineMaker->getEvents(1, 'Event.id desc', 10, false);
+$recommends = $timelineMaker->getEvents(1, 'Event.participant desc',3 ,false);
 ```
 
 
